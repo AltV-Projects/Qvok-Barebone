@@ -1,0 +1,38 @@
+{
+  "name": "vanilla-script",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "prebuild": "rimraf dist && node scripts/copyRetail.js",
+    "build:dev": "rollup -c",
+    "watch": "rollup -cw"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@altv/types-client": "^1.4.6",
+    "@altv/types-natives": "^1.1.0",
+    "@altv/types-server": "^1.6.5",
+    "@types/jscodeshift": "^0.7.2",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@rollup/plugin-typescript": "^8.1.0",
+    "chokidar": "^3.5.0",
+    "cross-env": "^7.0.3",
+    "jscodeshift": "^0.11.0",
+    "rollup": "^2.36.1",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.1.3",
+    "fs-extra": "^9.0.1"
+  },
+  "dependencies": {
+    "@durtyfree/altv-nativeui": "^1.4.4",
+    "class-transformer": "^0.3.2",
+    "dotenv": "^8.2.0",
+    "rimraf": "^3.0.2"
+  }
+}
