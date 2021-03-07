@@ -30,7 +30,6 @@
     "fs-extra": "^9.0.1"
   },
   "dependencies": {
-    "@durtyfree/altv-nativeui": "^1.4.4",
     "class-transformer": "^0.3.2",
     "dotenv": "^8.2.0",
     "rimraf": "^3.0.2"
