@@ -18,8 +18,3 @@ on("spawned", () => {
     camera.show();
   }, 1500);
 });
-
-on("client::destroyCamera", () => {
-  camera.destroy();
-  toggleGameControls(true);
-});

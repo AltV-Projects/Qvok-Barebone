@@ -1,2 +1,2 @@
 import "./internal";
-import "./loadDefaultPedModels";
+import "./ped";

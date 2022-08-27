@@ -6,13 +6,7 @@ import {
   renderScriptCams,
   setCamActive,
 } from "natives";
-
-enum CameraTypes {
-  DEFAULT_ANIMATED_CAMERA = "DEFAULT_ANIMATED_CAMERA",
-  DEFAULT_SCRIPTED_CAMERA = "DEFAULT_SCRIPTED_CAMERA",
-  DEFAULT_SCRIPTED_FLY_CAMERA = "DEFAULT_SCRIPTED_FLY_CAMERA",
-  DEFAULT_SPLINE_CAMERA = "DEFAULT_SPLINE_CAMERA",
-}
+import { CameraTypes } from "../enum";
 
 export class Camera {
   _position: Vector3;
@@ -56,14 +50,6 @@ export class Camera {
 
   hide() {
     this.checkIfCamIsDestroyed();
-    /*setFocusPosAndVel(
-      this._localPlayer.pos.x,
-      this._localPlayer.pos.y,
-      this._localPlayer.pos.z,
-      0,
-      0,
-      0
-    );*/
     renderScriptCams(false, false, 0, true, false, 0);
     this._isHidden = true;
   }
@@ -75,14 +61,6 @@ export class Camera {
   show() {
     this.checkIfCamIsDestroyed();
     setCamActive(this._camHandle, true);
-    /*setFocusPosAndVel(
-      this._position.x,
-      this._position.y,
-      this._position.z,
-      0,
-      0,
-      0
-    );*/
     renderScriptCams(true, false, 0, true, false, 0);
     this._isHidden = false;
   }

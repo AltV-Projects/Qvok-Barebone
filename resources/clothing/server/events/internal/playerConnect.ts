@@ -2,11 +2,7 @@ import { on, Player } from "alt-server";
 import { log } from "alt-shared";
 import { AppDataSource } from "../../database";
 import { DBWhitelist } from "../../database/entity";
-
-interface IWhitelistedPlayer {
-  DiscordId: string;
-  Username: string;
-}
+import { IWhitelistedPlayer } from "../../interfaces";
 
 let whitelistedPlayers: IWhitelistedPlayer[] = [];
 const whitelistRepository = AppDataSource.getRepository(DBWhitelist);
