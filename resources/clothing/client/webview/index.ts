@@ -4,15 +4,16 @@ import {
   on,
   onServer,
   Player,
+  setTimeout,
   showCursor,
   WebView,
 } from "alt-client";
-import { log } from "alt-shared";
 import {
   getNumberOfPedDrawableVariations,
   getNumberOfPedTextureVariations,
   setEntityHeading,
   setPedComponentVariation,
+  setPedHeadBlendData,
 } from "natives";
 
 let url =
@@ -36,13 +37,63 @@ wv.on("load", () => {
 
   wv.on("wv::setPlayerRotation", setPlayerRotation);
   wv.on("wv::getComponentInfoForId", getComponentInfoForId);
-  wv.on("wv::setGender", (gender: number) =>
-    emitServer("client::setGender", gender)
+  wv.on("wv::setGender", (gender: number) => {
+    emitServer("client::setGender", gender);
+
+    setTimeout(() => {
+      if (gender === 1) {
+        setPedHeadBlendData(
+          localPlayer,
+          36,
+          32,
+          0,
+          39,
+          17,
+          0,
+          0.48,
+          0.34,
+          0,
+          false
+        );
+        setComponentForPed(2, 4);
+      } else {
+        setPedHeadBlendData(
+          localPlayer,
+          44,
+          25,
+          0,
+          15,
+          42,
+          0,
+          0.34,
+          0.33,
+          0,
+          false
+        );
+        setComponentForPed(2, 7);
+      }
+    }, 100);
+  });
+  wv.on(
+    "wv::setNameForComponent",
+    (
+      componentId: number,
+      drawableId: number,
+      textureId: number,
+      name: string
+    ) =>
+      emitServer(
+        "client::setNameForComponent",
+        componentId,
+        drawableId,
+        textureId,
+        name
+      )
   );
   wv.on("wv::setTextureForComponent", setComponentForPed);
 
-  onServer("server:getComponentName", (name: string) => {
-    wv.emit("client::getComponentName", name);
+  onServer("server:getComponentName", (name: string, suggestions: string[]) => {
+    wv.emit("client::getComponentName", name, suggestions);
   });
 });
 

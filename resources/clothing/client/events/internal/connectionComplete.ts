@@ -1,5 +1,7 @@
-import { emit, on } from "alt-client";
-import { displayHud, displayRadar } from "natives";
+import { emit, on, Player } from "alt-client";
+import { displayHud, displayRadar, setPedHeadBlendData } from "natives";
+
+const localPlayer = Player.local;
 
 on("connectionComplete", () => {
   displayHud(false);
